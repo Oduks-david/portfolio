@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Queen's Wisdom — Mide'sfolio</title>
+    <link rel="stylesheet" href="queenswisdom.css">
+</head>
+<body>
+    <div class="cursor-dot" id="cursorDot"></div>
+
+    <nav class="project-page-nav">
+        <a href="index.html#work" class="project-page-back">← Back to Work</a>
+        <div class="project-page-brand">Ayomide Odukoya</div>
+    </nav>
+
+    <main class="project-page">
+        <h1 class="project-page-title reveal-up">Queen's Wisdom: An Identity Built on Knowledge</h1>
+
+        <p class="project-page-desc reveal-up">
+            Queen's Wisdom is a school built on the values of knowledge, discipline, and
+            character. The founder's vision was clear — create an identity that feels
+            trustworthy, dignified, and instantly recognizable to parents and students alike.
+        </p>
+        
+        <p class="project-page-desc reveal-up">
+            The final identity positions Queen's Wisdom as more than just a school —
+            it becomes a symbol of the values it was built to represent.
+        </p>
+
+        <!-- <div class="project-info-row reveal-up">
+            <div class="project-info-col">
+                <span class="info-label">Client</span>
+                <span class="info-value">Queen's Wisdom</span>
+            </div>
+            <div class="project-info-col">
+                <span class="info-label">Deliverables</span>
+                <span class="info-value">Brand Identity<br>Logo Design<br>Brand Guidelines</span>
+            </div>
+            <div class="project-info-col">
+                <span class="info-label">Year</span>
+                <span class="info-value">2026</span>
+            </div>
+            <div class="project-info-col">
+                <span class="info-label">Role</span>
+                <span class="info-value">Brand &amp; Logo Designer</span>
+            </div>
+        </div> -->
+
+        <div class="project-page-images">
+            <img class="reveal-up" src="queen/1.png" alt="Queen's Wisdom logo mark">
+            <video src="animate.mp4" autoplay loop muted playsinline></video>
+            <img class="reveal-up" src="queen/2.png" alt="Queen's Wisdom">
+            <img class="reveal-up" src="queen/3.png" alt="Queen's Wisdom">
+            <div class="image-pair">
+                <img class="reveal-up" src="queen/4.png" alt="Queen's Wisdom">
+                <img class="reveal-up" src="queen/5.png" alt="Queen's Wisdom">
+            </div>
+            <img class="reveal-up" src="queen/6.png" alt="Queen's Wisdom">
+        </div>
+
+        <a href="apari.html" class="project-next reveal-up">Next Project →</a>
+    </main>
+
+    <footer class="project-footer">
+        <div class="project-footer-socials">
+            <a href="https://x.com/da_fi_di" target="_blank" rel="noopener">Twitter</a>
+            <a href="https://www.instagram.com/oduks_david/" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://www.linkedin.com/in/odukoya-ayomide-0367b6240/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>    
+        <p class="project-footer-cta">
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=Oduksayomide@gmail.com" target="_blank" rel="noopener">Wanna Build Something Awesome?</a>
+        </p>
+        <span class="project-footer-copyright">&copy; 2026 Ayomide Odukoya</span>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var revealItems = document.querySelectorAll('.reveal-up');
+            var revealObserver = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15 });
+
+            revealItems.forEach(function (item) {
+                revealObserver.observe(item);
+            });
+
+            var cursorDot = document.getElementById('cursorDot');
+            if (cursorDot && window.matchMedia('(pointer: fine)').matches) {
+                var mouseX = 0;
+                var mouseY = 0;
+                var rafPending = false;
+
+                function updateCursorPosition() {
+                    cursorDot.style.setProperty('--x', mouseX + 'px');
+                    cursorDot.style.setProperty('--y', mouseY + 'px');
+                    rafPending = false;
+                }
+
+                document.addEventListener('mousemove', function (e) {
+                    mouseX = e.clientX;
+                    mouseY = e.clientY;
+                    cursorDot.style.opacity = '1';
+
+                    if (!rafPending) {
+                        rafPending = true;
+                        requestAnimationFrame(updateCursorPosition);
+                    }
+                });
+
+                document.addEventListener('mouseleave', function () {
+                    cursorDot.style.opacity = '0';
+                });
+
+                document.addEventListener('mouseover', function (e) {
+                    var anchor = e.target.closest('a');
+                    if (anchor) {
+                        cursorDot.classList.add('cursor-dot-link');
+                    }
+                });
+
+                document.addEventListener('mouseout', function (e) {
+                    var anchor = e.target.closest('a');
+                    if (anchor) {
+                        cursorDot.classList.remove('cursor-dot-link');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

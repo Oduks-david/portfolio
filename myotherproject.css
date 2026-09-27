@@ -1,0 +1,250 @@
+/* ==========================
+   Fonts
+========================== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap');
+
+/* ==========================
+   Reset & Base
+========================== */
+html {
+    scroll-behavior: smooth;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #0d0d0d;
+    color: #ffffff;
+    line-height: 1.6;
+}
+
+/* ==========================
+   Custom Cursor Dot
+========================== */
+.cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 1.5px solid transparent;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    mix-blend-mode: normal;
+    will-change: transform;
+    transform: translate3d(calc(var(--x, 0px) - 50%), calc(var(--y, 0px) - 50%), 0);
+    transition: opacity 0.3s ease, width 0.25s ease, height 0.25s ease,
+        background 0.25s ease, border-color 0.25s ease;
+}
+
+.cursor-dot::after {
+    content: '↗';
+    font-family: 'Poppins', sans-serif;
+    color: #c9a876;
+    font-size: 0;
+    transition: font-size 0.25s ease;
+}
+
+.cursor-dot.cursor-dot-link {
+    width: 50px;
+    height: 50px;
+    background: transparent;
+    border-color: #c9a876;
+    mix-blend-mode: difference;
+}
+
+.cursor-dot.cursor-dot-link::after {
+    font-size: 18px;
+}
+
+@media (pointer: coarse) {
+    .cursor-dot {
+        display: none;
+    }
+}
+
+/* ==========================
+   Scroll-triggered rise animation
+========================== */
+.reveal-up {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-up.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ==========================
+   Page Nav (shared with project pages)
+========================== */
+.project-page-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px 48px;
+}
+
+.project-page-back {
+    font-size: 0.85rem;
+    color: #aaaaaa;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+.project-page-back:hover {
+    color: #c9a876;
+}
+
+.project-page-brand {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: #ffffff;
+}
+
+/* ==========================
+   Feed Header
+========================== */
+.feed-header {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 20px 24px 60px;
+    text-align: center;
+}
+
+.feed-title {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(2.4rem, 6vw, 4rem);
+    margin-bottom: 16px;
+}
+
+.feed-subtitle {
+    font-size: 1rem;
+    color: #cccccc;
+}
+
+/* ==========================
+   Feed Grid (masonry via columns)
+========================== */
+.feed-grid {
+    column-count: 3;
+    column-gap: 16px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 24px 100px;
+}
+
+.feed-item {
+    break-inside: avoid;
+    margin-bottom: 16px;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #1a1a1a;
+}
+
+.feed-item img {
+    width: 100%;
+    display: block;
+    filter: grayscale(10%) contrast(1.05);
+    transition: transform 0.5s ease;
+}
+
+.feed-item:hover img {
+    transform: scale(1.04);
+}
+
+/* ==========================
+   Mini Footer (shared with project pages)
+========================== */
+.project-footer {
+    text-align: center;
+    padding: 60px 24px 50px;
+    border-top: 1px solid #1a1a1a;
+}
+
+.project-footer-socials {
+    display: flex;
+    justify-content: center;
+    gap: 22px;
+    margin-bottom: 30px;
+}
+
+.project-footer-socials a {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #999999;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.project-footer-socials a:hover {
+    color: #c9a876;
+}
+
+.project-footer-cta {
+    margin-bottom: 20px;
+}
+
+.project-footer-cta a {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.project-footer-cta a:hover {
+    color: #c9a876;
+}
+
+.project-footer-copyright {
+    font-size: 0.75rem;
+    color: #777777;
+}
+
+/* ==========================
+   Responsive
+========================== */
+@media (max-width: 900px) {
+    .feed-grid {
+        column-count: 2;
+    }
+}
+
+@media (max-width: 600px) {
+    .feed-grid {
+        column-count: 1;
+    }
+
+    .project-page-nav {
+        padding: 24px;
+    }
+
+    .feed-header {
+        padding: 10px 20px 40px;
+    }
+
+    .project-footer-socials {
+        flex-wrap: wrap;
+    }
+}

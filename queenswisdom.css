@@ -1,0 +1,318 @@
+/* ==========================
+   Fonts
+========================== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap');
+
+/* ==========================
+   Reset & Base
+========================== */
+html {
+    scroll-behavior: smooth;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #0d0d0d;
+    color: #ffffff;
+    line-height: 1.6;
+}
+
+/* ==========================
+   Custom Cursor Dot
+========================== */
+.cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 1.5px solid transparent;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    mix-blend-mode: normal;
+    will-change: transform;
+    transform: translate3d(calc(var(--x, 0px) - 50%), calc(var(--y, 0px) - 50%), 0);
+    transition: opacity 0.3s ease, width 0.25s ease, height 0.25s ease,
+        background 0.25s ease, border-color 0.25s ease;
+}
+
+.cursor-dot::after {
+    content: '↗';
+    font-family: 'Poppins', sans-serif;
+    color: #c9a876;
+    font-size: 0;
+    transition: font-size 0.25s ease;
+}
+
+/* Hovering any link: stroke ring with an arrow icon */
+.cursor-dot.cursor-dot-link {
+    width: 50px;
+    height: 50px;
+    background: transparent;
+    border-color: #c9a876;
+    mix-blend-mode: difference;
+}
+
+.cursor-dot.cursor-dot-link::after {
+    font-size: 18px;
+}
+
+@media (pointer: coarse) {
+    .cursor-dot {
+        display: none;
+    }
+}
+
+/* ==========================
+   Scroll-triggered rise animation
+========================== */
+.reveal-up {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-up.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ==========================
+   Project Detail Page
+========================== */
+.project-page-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px 48px;
+}
+
+.project-page-back {
+    font-size: 0.85rem;
+    color: #aaaaaa;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+.project-page-back:hover {
+    color: #c9a876;
+}
+
+.project-page-brand {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: #ffffff;
+}
+
+.project-page {
+    max-width: 900px;
+    margin: 0 auto;
+    /* padding: 60px 48px 140px; */
+    text-align: center;
+}
+
+.project-page-category {
+    display: block;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: #c9a876;
+    margin-bottom: 18px;
+}
+
+.project-page-title {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    line-height: 1.1;
+    margin-bottom: 28px;
+}
+
+.project-page-desc {
+    max-width: 620px;
+    margin: 0 auto 20px;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #cccccc;
+    text-align: left;
+}
+
+.project-page-desc:last-of-type {
+    margin-bottom: 50px;
+}
+
+.project-info-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    max-width: 780px;
+    margin: 0 auto 60px;
+    padding: 30px 0;
+    border-top: 1px solid #262626;
+    border-bottom: 1px solid #262626;
+    text-align: left;
+}
+
+.project-info-col {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.info-label {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #888888;
+}
+
+.info-value {
+    font-size: 0.9rem;
+    color: #ffffff;
+    line-height: 1.6;
+}
+
+.project-page-images {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 95vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -47.5vw;
+    margin-right: -48.vw;
+    /* padding: 0 32px; */
+}
+
+.project-page-images img {
+    width: 100%;
+    display: block;
+    filter: grayscale(10%) contrast(1.05);
+}
+
+.image-pair {
+    display: flex;
+    gap: 24px;
+}
+
+.image-pair img {
+    width: 50%;
+    padding-right: px;
+}
+
+.project-next {
+    display: inline-block;
+    margin-top: 60px;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.4rem;
+    color: #ffffff;
+    text-decoration: none;
+    border-bottom: 1px solid #c9a876;
+    padding-bottom: 4px;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.project-next:hover {
+    color: #c9a876;
+    transform: translateX(4px);
+}
+
+/* ==========================
+   Project Page Footer
+========================== */
+.project-footer {
+    text-align: center;
+    padding: 60px 24px 50px;
+    border-top: 1px solid #1a1a1a;
+}
+
+.project-footer-socials {
+    display: flex;
+    justify-content: center;
+    gap: 22px;
+    margin-bottom: 30px;
+}
+
+.project-footer-socials a {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #999999;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.project-footer-socials a:hover {
+    color: #c9a876;
+}
+
+.project-footer-cta {
+    margin-bottom: 20px;
+}
+
+.project-footer-cta a {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.project-footer-cta a:hover {
+    color: #c9a876;
+}
+
+.project-footer-copyright {
+    font-size: 0.75rem;
+    color: #777777;
+}
+
+@media (max-width: 768px) {
+    .project-page-nav {
+        padding: 24px 24px;
+    }
+
+    .project-page {
+        padding: 40px 24px 100px;
+    }
+
+    .project-info-row {
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .project-page-images {
+        padding: 0 16px;
+    }
+
+    .image-pair {
+        flex-direction: column;
+    }
+
+    .image-pair img {
+        width: 100%;
+    }
+
+    .project-footer-socials {
+        flex-wrap: wrap;
+    }
+}

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Queen's Wisdom — Mide'sfolio</title>
+    <link rel="stylesheet" href="queenswisdom.css">
+</head>
+<body>
+    <div class="cursor-dot" id="cursorDot"></div>
+
+    <nav class="project-page-nav">
+        <a href="index.html#work" class="project-page-back">← Back to Work</a>
+        <div class="project-page-brand">Ayomide Odukoya</div>
+    </nav>
+
+    <main class="project-page">
+        <h1 class="project-page-title reveal-up">TRUFFLEBAKES: A logo design for a pastry Brand</h1>
+
+        <p class="project-page-desc reveal-up">
+            Trufflesbake is an artisan pastry brand dedicated to crafting exquisite, 
+            decadent treats with a touch of elegance.
+
+Its logo features a sophisticated monogram uniting the letters 'T' and 'B', 
+seamlessly connected by a fluid stroke that artfully mimics the smooth, 
+graceful swirl of cake icing.
+        </p>
+
+        <div class="project-page-images">
+            <img class="reveal-up" src="trufflebakes/Logo 1.png" alt="TruffleBakes logo mark">
+            <img class="reveal-up" src="trufflebakes/logomark 1.png" alt="TruffleBakes">         
+             <div class="image-pair">
+                <img class="reveal-up" src="trufflebakes/Logo 2.png" alt="TruffleBakes">
+                <img class="reveal-up" src="trufflebakes/logomark 2.png" alt="TruffleBakes">
+            </div>           
+             <div class="image-pair">
+                <img class="reveal-up" src="trufflebakes/logo 3.png" alt="TruffleBakes">
+                <img class="reveal-up" src="trufflebakes/logomark 3.png" alt="TruffleBakes">
+            </div>           
+    
+            
+        </div>
+
+        <a href="venture.html" class="project-next reveal-up">Next Project →</a>
+    </main>
+
+    <footer class="project-footer">
+        <div class="project-footer-socials">
+            <a href="https://x.com/da_fi_di" target="_blank" rel="noopener">Twitter</a>
+            <a href="https://www.instagram.com/oduks_david/" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://www.linkedin.com/in/odukoya-ayomide-0367b6240/" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://t.co/F8ZWXAWT9s" target="_blank" rel="noopener">Behance</a>
+           <a href="https://mail.google.com/mail/?view=cm&fs=1&to=Oduksayomide@gmail.com" target="_blank" rel="noopener">Wanna Build Something Awesome?</a>
+        </p>
+        <span class="project-footer-copyright">&copy; 2026 Ayomide Odukoya</span>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var revealItems = document.querySelectorAll('.reveal-up');
+            var revealObserver = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15 });
+
+            revealItems.forEach(function (item) {
+                revealObserver.observe(item);
+            });
+
+            var cursorDot = document.getElementById('cursorDot');
+            if (cursorDot && window.matchMedia('(pointer: fine)').matches) {
+                var mouseX = 0;
+                var mouseY = 0;
+                var rafPending = false;
+
+                function updateCursorPosition() {
+                    cursorDot.style.setProperty('--x', mouseX + 'px');
+                    cursorDot.style.setProperty('--y', mouseY + 'px');
+                    rafPending = false;
+                }
+
+                document.addEventListener('mousemove', function (e) {
+                    mouseX = e.clientX;
+                    mouseY = e.clientY;
+                    cursorDot.style.opacity = '1';
+
+                    if (!rafPending) {
+                        rafPending = true;
+                        requestAnimationFrame(updateCursorPosition);
+                    }
+                });
+
+                document.addEventListener('mouseleave', function () {
+                    cursorDot.style.opacity = '0';
+                });
+
+                document.addEventListener('mouseover', function (e) {
+                    var anchor = e.target.closest('a');
+                    if (anchor) {
+                        cursorDot.classList.add('cursor-dot-link');
+                    }
+                });
+
+                document.addEventListener('mouseout', function (e) {
+                    var anchor = e.target.closest('a');
+                    if (anchor) {
+                        cursorDot.classList.remove('cursor-dot-link');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
