@@ -597,9 +597,26 @@ body {
         padding: 24px 20px;
     }
 
+    /* Mobile nav: brand on top, links on one line below */
+    .hero-nav {
+        flex-direction: column;
+        align-items: center;
+        gap: 14px;
+    }
+
+    .hero-brand {
+        font-size: 1.5rem;
+        white-space: nowrap;
+    }
+
     .hero-links {
-        gap: 20px;
-        font-size: 0.95rem;
+        justify-content: center;
+        gap: 22px;
+        font-size: 0.8rem;
+    }
+
+    .hero-links li {
+        white-space: nowrap;
     }
 
     .hero-main {
@@ -837,5 +854,13 @@ h2.footer-name.reveal-up {
 @media (max-width: 480px) {
     .project-grid {
         grid-template-columns: 1fr;
+    }
+}
+
+/* Very small phones: tighten the nav links */
+@media (max-width: 380px) {
+    .hero-links {
+        gap: 16px;
+        font-size: 0.72rem;
     }
 }
